@@ -13,7 +13,9 @@ public class MoveToGoalAgent : Agent
     [SerializeField] private MeshRenderer floorMeshRenderer;
     public override void OnEpisodeBegin()
     {
-        transform.localPosition = Vector3.zero;
+        transform.localPosition = new Vector3(Random.Range(-3f, 1f), 0, Random.Range(-2f, 2f));
+        targetTransform.localPosition = new Vector3(Random.Range(1.96f, 3.43f), 0, Random.Range(-2f, 2f));
+
     }
     public override void CollectObservations(VectorSensor sensor)
     {
@@ -26,7 +28,7 @@ public class MoveToGoalAgent : Agent
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
 
-        float moveSpeed = 7f;
+        float moveSpeed = 5f;
         transform.localPosition += new Vector3(moveX, 0, moveZ) * Time.deltaTime * moveSpeed;
     }
 
